@@ -1,0 +1,137 @@
+
+
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>{{info.title}}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 50px;
+            margin: 0 auto;
+        }
+        th, td {
+        border-left: none ;
+        border-right: none ;
+
+            padding: 8px;
+            text-align: left;
+            font-size: 12px;
+
+        }
+        th {
+            background-color: #fff3e3;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        tfoot{
+            background-color: #fff3e3;
+        }
+
+        tfoot td{
+            font-weight: bold;
+            text-align: right;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        h1{
+            text-align: center;
+        }
+
+        p{
+            text-align: center;
+        }
+
+        .headerContainer{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+        
+
+        .textContainer{
+
+        }
+
+        .bodyTR{
+            background-color: #fff9f0;
+        }
+
+        .bodyTR td{
+            border-bottom: 0.2px solid rgb(255, 255, 255);
+            text-align: center;
+        }
+
+        .date-td {
+            text-align: left;
+        }
+
+        .title, .description{
+            text-align: center;
+        }
+
+        .description{
+            font-size: 14px;
+            color: #808080;
+        }
+
+        .price{
+            text-align: right !important;
+        }
+
+        #cost, .cost{
+            width: 100px;
+        }
+    </style>
+<body>
+    <div class="headerContainer">
+        <img src="data:image/png;base64,${logoBase64}" alt="Logo" />
+    </div>
+    <h2 class="title">{{info.title}}</h2>
+    <p class="description">{{info.description}}</p>
+    <table>
+        <tr>
+            <th>Product name</th>
+            <th>Opening Qty</th>
+            <th>Sold Qty</th>
+            <th>Balance Qty</th>
+            <th>Date</th>
+            <th>Price Per Unit</th>
+            <th class="cost">Cost of Remaining</th>
+            <th>Total sales</th>
+        </tr>
+        {{#each stocks as |stock|}}
+            <tr class="bodyTR">
+                <td>{{stock.productName}}</td>
+                <td>{{stock.openingStock}}</td>
+                <td>{{stock.soldStock}}</td>
+                <td>{{stock.balanceStock}}</td>
+                <td class="date-td">{{stock.date}}</td>
+                <td class="price">{{stock.pricePerUnit}}</td>
+                <td class="price" id="cost">{{stock.costOfRemainingStock}}</td>
+                <td class="price">{{stock.totalSales}}</td>
+            </tr>
+        {{/each}}
+        <tfoot>
+            <tr>
+                <td colspan="5"></td>
+                <td colspan="2">Sum of Total Sales :</td>
+                <td>{{info.sumOfSales}}</td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+                <td colspan="2">Sum of Remaining Stock :</td>
+                <td>{{info.sumOfRemaining}}</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
